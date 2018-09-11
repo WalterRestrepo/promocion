@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lista de Promociones</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: center;
+            font-family: Arial;
+        }
+
+        .column {
+            float: left;
+            width: 25%;
+            padding: 10px;
+        }
+
+        .column img {
+            opacity: 0.8;
+            cursor: pointer;
+        }
+
+        .column img:hover {
+            opacity: 1;
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .container {
+            position: relative;
+            display: none;
+        }
+
+        #imgtext {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            color: white;
+            font-size: 20px;
+        }
+
+        .closebtn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: white;
+            font-size: 35px;
+            cursor: pointer;
+        }
+
+        div.desc {
+            padding: 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    </head>
+
+    <body>
+        <TABLE align="center" bgcolor="white">
+            <TR>
+                <TD>
+                    <TABLE align="center">
+                        <TR>
+                            <TD colspan="11">
+                                <HR />
+                            </TD>
+                        </TR>
+                        <TR>
+                            <TD> <b>Descuentos YA! Las Mejores Promociones Siempre!! </b> </TD><br>
+                        </TR>
+                    </TABLE>
+                </TD>
+            </TR>
+            <TR>
+                <TD>
+                    <TABLE align="center">
+                        <TR bgcolor="lightgray">
+                            <TD colspan="7"> <IMG src="Descuentos-Ya.png" width="300" height="200"></TD>
+                        </TR>
+                        <TR>
+                            <TD colspan="11">
+                                <HR />
+                            </TD>
+                        </TR>
+                    </TABLE>
+            </TR>
+            </TD>
+            <?php
+        
+        // Conectando, seleccionando la base de datos
+        
+        $link = mysql_connect('localhost', 'root', 'usbw')
+        
+            or die('No se pudo conectar: ' . mysql_error());
+        
+        
+        mysql_select_db('id5633805_promo') or die('No se pudo conectar a la base de datos');
+        
+        
+        
+        // Realizar una consulta MySQL
+        $query = 'select * from promocion where ';
+        
+        $result = mysql_query($query) or die('error: ' . mysql_error());
+        
+        ?>
+
+            <table class="table table-striped" align="center">
+
+                <thead>
+                    <tr>
+                        <th>Restaurante/Comercio</th>
+                        <th>Direccion</th>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>
+                        <th>Precio</th>
+                        <th>Porcion descuento</th>
+                    </tr>
+                </thead>
+                <?php while ($row = mysql_fetch_array($result)){?>
+                <td>
+                    <?php $row['punto_atencion'] ?>
+                </td>
+                <td>
+                    <?php $row['direccion'] ?>
+                </td>
+                <td>
+                    <?php $row['nombre'] ?>
+                </td>
+                <td>
+                    <?php $row['descripcion'] ?>
+                </td>
+                <td>
+                    <?php $row['precio'] ?>
+                </td>
+                <td>
+                    <?php $row['procion_descuento'] ?>
+                </td>
+                <?php} ?>
+            </table>
+            <div style="text-align:center">
+                <h2>Lista de promociones</h2>
+
+            </div>
+
+            <div class="row">
+                <div class="column">
+                    <img src="img_nature.jpg" alt="Nature" style="width:100%">
+                    <div class="desc">Oferta de pollo Pivy 2x1 por tiempo limitado </div>
+                </div>
+                <div class="column">
+                    <img src="img_snow.jpg" alt="Snow" style="width:100%">
+                    <div class="desc">Oferta de Talbasco De 1 PM a 2 PM</div>
+                </div>
+                <div class="column">
+                    <img src="img_mountains.jpg" alt="Mountains" style="width:100%">
+                    <div class="desc">Oferta de Churrasco Argentino De 12 PM a 2 PM</div>
+                </div>
+                <div class="column">
+                    <img src="img_lights.jpg" alt="Lights" style="width:100%">
+                    <div class="desc">Oferta de Gallina Criolla Frita De 12 PM a 2 PM</div>
+                </div>
+            </div>
+
+            <div class="container">
+                <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+                <img id="expandedImg" style="width:100%">
+                <div id="imgtext"></div>
+            </div>
+
+            <center>
+                <style>
+                    /* Set the size of the div element that contains the map */
+                    #map {
+                        height: 250px;
+                        /* The height is 400 pixels */
+                        width: 25%;
+                        /* The width is the width of the web page */
+                    }
+                </style>
+                <h3>Ubicacion del lugar</h3>
+                <!--The div element for the map -->
+                <div id="map"></div>
+                <script>
+                    // Initialize and add the map
+                    function initMap() {
+                        // The location of site
+                        var ubicacion = { lat: 6.345423, lng: -75.549982 };
+                        // The map, centered at the ubication
+                        var map = new google.maps.Map(
+                            document.getElementById('map'), { zoom: 15, center: ubicacion });
+                        // The marker, positioned at Uluru
+                        var marker = new google.maps.Marker({ position: ubicacion, map: map });
+                    }
+                </script>
+                <!--Load the API from the specified URL
+            * The async attribute allows the browser to render the page while the API loads
+            * The key parameter will contain your own API key (which is not needed for this tutorial)
+            * The callback parameter executes the initMap() function
+            -->
+                <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCASET0ea56OnBa6ECbdBx9XXfuFi86cEs&callback=initMap">
+
+                </script>
+                <br>
+                <br><br>
+                Recuerda que para hacer efectiva la promocion es necesario mostrar el codigo en el punto de atencion!
+                </td>
+            </center>
+        </table>
+    </body>
+
+</html>

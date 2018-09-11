@@ -1,0 +1,131 @@
+<DOCTIPE html>
+  <html>
+
+  <HEAD>
+    <TITLE> Descuentos YA! - Detalle Promocion</TITLE>
+
+    <HEAD>
+
+    <BODY>
+      <TABLE align="center" bgcolor="white">
+        <TR>
+          <TD>
+            <TABLE align="center">
+              <TR>
+                <TD colspan="11">
+                  <HR />
+                </TD>
+              </TR>
+              <TR>
+                <TD> <b>Descuentos YA! Las Mejores Promociones Siempre!! </b> </TD><br>
+              </TR>
+            </TABLE>
+          </TD>
+        </TR>
+        <TR>
+          <TD>
+            <TABLE align="center">
+              <TR bgcolor="lightgray">
+                <TD colspan="7"> <IMG src="C:\Users\Anderson\Desktop\Profundizacion\EjemploComida.png" width="300"
+                    height="200"></TD>
+              </TR>
+              <TR>
+                <TD colspan="11">
+                  <HR />
+                </TD>
+              </TR>
+            </TABLE>
+        </TR>
+        </TD>
+        <?php
+
+// Conectando, seleccionando la base de datos
+
+$link = mysql_connect('localhost', 'root', 'usbw')
+
+    or die('No se pudo conectar: ' . mysql_error());
+
+
+mysql_select_db('id5633805_promo') or die('No se pudo conectar a la base de datos');
+
+
+
+// Realizar una consulta MySQL
+$query = 'select * from promociones where id= ';
+
+$result = mysql_query($query) or die('error: ' . mysql_error());
+
+?>
+        <table class="table table-striped" align="center">
+
+          <thead>
+            <tr>
+              <th>Restaurante/Comercio</th>
+              <th>Direccion</th>
+              <th>Nombre</th>
+              <th>Descripcion</th>
+              <th>Precio</th>
+              <th>Porcion descuento</th>
+            </tr>
+          </thead>
+          <?php while ($row = mysql_fetch_array($result)){?>
+          <td>
+            <?php $row['punto_atencion'] ?>
+          </td>
+          <td>
+            <?php $row['direccion'] ?>
+          </td>
+          <td>
+            <?php $row['nombre'] ?>
+          </td>
+          <td>
+            <?php $row['descripcion'] ?>
+          </td>
+          <td>
+            <?php $row['precio'] ?>
+          </td>
+          <td>
+            <?php $row['procion_descuento'] ?>
+          </td>
+          <?php} ?>
+        </table>
+        <center>
+          <style>
+            /* Set the size of the div element that contains the map */
+      #map {
+        height: 250px;  /* The height is 400 pixels */
+        width: 25%;  /* The width is the width of the web page */
+       }
+    </style>
+          <h3>Ubicacion del lugar</h3>
+          <!--The div element for the map -->
+          <div id="map"></div>
+          <script>
+            // Initialize and add the map
+            function initMap() {
+              // The location of site
+              var ubicacion = { lat: 6.345423, lng: -75.549982 };
+              // The map, centered at the ubication
+              var map = new google.maps.Map(
+                document.getElementById('map'), { zoom: 15, center: ubicacion });
+              // The marker, positioned at Uluru
+              var marker = new google.maps.Marker({ position: ubicacion, map: map });
+            }
+          </script>
+          <!--Load the API from the specified URL
+    * The async attribute allows the browser to render the page while the API loads
+    * The key parameter will contain your own API key (which is not needed for this tutorial)
+    * The callback parameter executes the initMap() function
+    -->
+          <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCASET0ea56OnBa6ECbdBx9XXfuFi86cEs&callback=initMap">
+
+
+
+          </script>
+          <br>
+
+          <input type="submit" value="Redimir Promocion" align="Center">
+        </center>
+    </BODY>
+
+  </html>
