@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `ciudad` (
   KEY `PK_ciudad` (`id_ciudad`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla db_descuentos.ciudad: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla db_descuentos.ciudad: ~5 rows (aproximadamente)
 DELETE FROM `ciudad`;
 /*!40000 ALTER TABLE `ciudad` DISABLE KEYS */;
 INSERT INTO `ciudad` (`id_ciudad`, `nombre`) VALUES
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `comercio` (
   KEY `PK_comercio` (`id_comercio`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla db_descuentos.comercio: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla db_descuentos.comercio: ~2 rows (aproximadamente)
 DELETE FROM `comercio`;
 /*!40000 ALTER TABLE `comercio` DISABLE KEYS */;
 INSERT INTO `comercio` (`id_comercio`, `nit`, `nombre`, `razon_social`, `estado`) VALUES
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `momento_dia` (
   KEY `PK_momento_dia` (`id_momento_dia`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla db_descuentos.momento_dia: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla db_descuentos.momento_dia: ~1 rows (aproximadamente)
 DELETE FROM `momento_dia`;
 /*!40000 ALTER TABLE `momento_dia` DISABLE KEYS */;
 INSERT INTO `momento_dia` (`id_momento_dia`, `nombre`) VALUES
@@ -177,7 +177,7 @@ CREATE TABLE IF NOT EXISTS `tipo_comida` (
   KEY `PK_tipo_comida` (`id_tipo_comida`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla db_descuentos.tipo_comida: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla db_descuentos.tipo_comida: ~1 rows (aproximadamente)
 DELETE FROM `tipo_comida`;
 /*!40000 ALTER TABLE `tipo_comida` DISABLE KEYS */;
 INSERT INTO `tipo_comida` (`id_tipo_comida`, `nombre`) VALUES
@@ -192,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `tipo_promocion` (
   KEY `PK_tipo_promocion` (`id_tipo_promocion`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla db_descuentos.tipo_promocion: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla db_descuentos.tipo_promocion: ~3 rows (aproximadamente)
 DELETE FROM `tipo_promocion`;
 /*!40000 ALTER TABLE `tipo_promocion` DISABLE KEYS */;
 INSERT INTO `tipo_promocion` (`id_tipo_promocion`, `nombre`) VALUES
@@ -218,7 +218,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   CONSTRAINT `FK_usuario_comercio` FOREIGN KEY (`id_comercio`) REFERENCES `comercio` (`id_comercio`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla db_descuentos.usuario: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla db_descuentos.usuario: ~4 rows (aproximadamente)
 DELETE FROM `usuario`;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
 INSERT INTO `usuario` (`id_usuario`, `id_comercio`, `nombre`, `fecha_nacimiento`, `sexo`, `celular`, `email`, `password`, `estado`) VALUES
@@ -247,7 +247,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla db_descuentos.usuarios: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla db_descuentos.usuarios: ~2 rows (aproximadamente)
 DELETE FROM `usuarios`;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
 INSERT INTO `usuarios` (`id`, `id_comercio`, `nombre`, `fecha_nacimiento`, `sexo`, `celular`, `email`, `password`, `estado`, `createdAt`, `updatedAt`) VALUES
