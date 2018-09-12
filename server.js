@@ -2,6 +2,7 @@
 //codepen
 //node server.js ->Para correr
 //npm cache clean --force
+//figma
 var express = require("express");
 var app = express();
 var path = require("path");
@@ -50,6 +51,9 @@ var sessionChecker = (req, res, next) => {
 };
 app.get('/', sessionChecker, (req, res) => {
     res.redirect('/login');
+});
+app.get('/iniciarsesioncss', sessionChecker, (req, res) => {
+    res.sendFile(__dirname + '/public/iniciarsesion.css');
 });
 // app.get('/crearComercio', function (req, res) {
 //     res.sendFile(
