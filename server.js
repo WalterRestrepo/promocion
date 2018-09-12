@@ -24,7 +24,7 @@ var con = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "",
-    database: "db_auditoria"
+    database: "db_descuentos"
 });
 //Configuramos la aplicacion
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -108,6 +108,23 @@ app.route('/login')
             }
         });
     });
+
+app.get('/promociones/:tipo', function(req, res) {
+    var tipo = req.params.tipo;
+    if (tipo == 1) {
+        con.query("SELECT * FROM promocion;", function(err, result, fields) {
+            if (err) throw err;
+            res.json(result);
+        });
+    } else if (tipo == 2) {
+        con.query("SELECT * FROM promocion WHERE id_tipo_promocion = ? OR (cantidad > ? and id_tipo_promocion = ?) OR (id_tipo_promocion = ? AND now() BETWEEN inicio and fin);", [3, 0, 2, 1], function(err, result, fields) {
+            if (err) throw err;
+            res.json(result);
+        });
+    }
+
+});
+
 // app.get('/logout', (req, res) => {
 //     if (req.session.user && req.cookies.user_sid) {
 //         res.clearCookie('user_sid');
