@@ -52,8 +52,11 @@ var sessionChecker = (req, res, next) => {
 app.get('/', sessionChecker, (req, res) => {
     res.redirect('/login');
 });
-app.get('/iniciarsesioncss', sessionChecker, (req, res) => {
+app.get('/iniciarsesioncss', (req, res) => {
     res.sendFile(__dirname + '/public/iniciarsesion.css');
+});
+app.get('/listapromocionescss', (req, res) => {
+    res.sendFile(__dirname + '/public/listapromociones.css');
 });
 // app.get('/crearComercio', function (req, res) {
 //     res.sendFile(
@@ -80,7 +83,7 @@ app.get('/iniciarsesioncss', sessionChecker, (req, res) => {
 //     });
 app.get('/inicio', (req, res) => {
     if (req.session.user && req.cookies.user_sid) {
-        res.sendFile(__dirname + '/public/inicio.html');
+        res.sendFile(__dirname + '/public/listaPromociones.html');
     } else {
         res.redirect('/login');
     }
@@ -94,7 +97,7 @@ app.route('/login')
             password = req.body.password;
         console.debug(email);
         console.debug(password);
-        User.findOne({ where: { email: email } }).then(function (user) {
+        User.findOne({ where: { email: email } }).then(function(user) {
             if (!user) {
                 res.redirect('/login');
             } else if (!user.validPassword(password)) {
@@ -314,7 +317,7 @@ app.route('/signup')
 //     });
 // });
 
-app.listen(3500, function () {
+app.listen(3500, function() {
     console.log("Funciona 127.0.0.1:3500");
 });
 

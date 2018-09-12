@@ -1,147 +1,21 @@
-<DOCTIPE html>
-	<html>
+﻿<!DOCTYPE HTML>
+<html>
 
-	<HEAD>
-		<TITLE> Descuentos YA! - Lista de Promociones</TITLE>
+<head>
+	<meta charset="utf-8" />
+	<link rel=StyleSheet href="listapromocionescss" type="text/css" />
+	<title>Descuentos YA! - Lista de Promociones</title>
+</head>
 
-		<HEAD>
-
-		<BODY>
-			<TABLE align="center" bgcolor="white">
-				<TR>
-					<TD>
-						<TABLE align="center">
-							<TR>
-								<TD colspan="11">
-									<HR />
-								</TD>
-							</TR>
-							<TR>
-								<TD> <b>Descuentos YA! Las Mejores Promociones Siempre!! </b> </TD><br>
-							</TR>
-						</TABLE>
-					</TD>
-				</TR>
-				<TR>
-					<TD>
-						<TABLE align="center">
-							<TR bgcolor="lightgray">
-								<TD colspan="7"> <IMG src="C:\Users\Anderson\Desktop\Profundizacion\EjemploComida.png" width="300" height="200"></TD>
-							</TR>
-							<TR>
-								<TD colspan="11">
-									<HR />
-								</TD>
-							</TR>
-						</TABLE>
-				</TR>
-				</TD>
-				<tr>
-					<center>
-						<table align="center">
-							<tr>
-								<th>Filtros</th>
-								<th>Promociones</th>
-							</tr>
-							<td>
-								<form action="/action_page.php">
-									<fieldset>
-										<legend>Momento del dia</legend>
-										<input type="checkbox" name="Desayuno" value="1">Desayuno<br>
-										<input type="checkbox" name="Almuerzo" value="2">Almuerzo<br>
-										<input type="checkbox" name="Cena" value="3">Cena<br>
-									</fieldset>
-									<fieldset>
-										<legend>Restriccion Alimenticia</legend>
-										<input type="checkbox" name="Vegano" value="1">Vegeno<br>
-										<input type="checkbox" name="Vegetariano" value="2">Vegetariano<br>
-									</fieldset>
-									<fieldset>
-										<legend>Tipo Comida</legend>
-										<select name="Tipo_comida">
-											<option value="1">Afgana</option>
-											<option value="2">Africana</option>
-											<option value="3">Albanesa</option>
-											<option value="4">Alemana</option>
-											<option value="5">�rabe</option>
-											<option value="6">Argentina</option>
-											<option value="7">Asi�tica</option>
-											<option value="8">Australiana</option>
-											<option value="9">Bar</option>
-											<option value="10">Bar de vinos</option>
-											<option value="11">Belga</option>
-											<option value="12">Brasilera</option>
-											<option value="13">Brit�nica</option>
-											<option value="14">Caf�</option>
-											<option value="15">Caj�n y criolla</option>
-											<option value="16">Camboyana</option>
-											<option value="17">Caribe�a</option>
-											<option value="18">Centroamericana</option>
-											<option value="19">Cervecer�a</option>
-											<option value="20">Chilena</option>
-											<option value="21">China</option>
-											<option value="22">China: Fujian</option>
-											<option value="23">Churrasquer�a</option>
-											<option value="24">Colombiana</option>
-											<option value="25">Comida de calle</option>
-											<option value="26">Comida r�pida</option>
-											<option value="27">Contempor�nea</option>
-											<option value="28">Coreana</option>
-											<option value="29">Cubana</option>
-											<option value="30">De Europa Central</option>
-											<option value="31">De Europa del Este</option>
-											<option value="32">De la India</option>
-											<option value="33">Del Medio Oriente</option>
-											<option value="34">Del sudoeste de EE.UU</option>
-											<option value="35">Delicatessen</option>
-											<option value="36">Ecuatoriana</option>
-											<option value="37">Egipcia</option>
-											<option value="38">Escocesa</option>
-											<option value="39">Espa�ola</option>
-											<option value="40">Estadounidense</option>
-											<option value="41">Europea</option>
-											<option value="42">Francesa</option>
-											<option value="43">Fuente de soda</option>
-											<option value="44">Fusi�n</option>
-											<option value="45">Gastropub</option>
-											<option value="46">Griega</option>
-											<option value="47">Hawaiana</option>
-											<option value="48">Internacional</option>
-											<option value="49">Irlandesa</option>
-											<option value="50">Israel�</option>
-											<option value="51">Italiana</option>
-											<option value="52">Japonesa</option>
-											<option value="53">Latina</option>
-											<option value="54">Libanesa</option>
-											<option value="55">Mariscos</option>
-											<option value="56">Mediterr�nea</option>
-											<option value="57">Mexicana</option>
-											<option value="58">Nativo estadounidense</option>
-											<option value="59">Nepal�</option>
-											<option value="60">Pakistan�</option>
-											<option value="61">Parrilla</option>
-											<option value="62">Parrillada</option>
-											<option value="63">Peruana</option>
-											<option value="64">Pizzer�a</option>
-											<option value="65">Pub</option>
-											<option value="66">Rumana</option>
-											<option value="67">Saludable</option>
-											<option value="68">Salvadore�a</option>
-											<option value="69">Sopas</option>
-											<option value="70">Sudamericana</option>
-											<option value="71">Suiza</option>
-											<option value="72">Sushi</option>
-											<option value="73">Tailandesa</option>
-											<option value="74">Taiwanesa</option>
-											<option value="75">Turca</option>
-											<option value="76">Venezolana</option>
-											<option value="77">Vietnamita</option>
-										</select>
-									</fieldset>
-								</form>
-							</td>
-							<td>
-								<?php
+<body>
+	<header>
+		<h1> Descuentos YA!</h1>
+		<h2>Las Mejores Promociones Siempre</h2>
+	</header>
+	<section>
+		<article>
+			<p>
+				<?php
 
 // Conectando, seleccionando la base de datos
 
@@ -160,33 +34,156 @@ $query = 'select * from promociones where id= ';
 $result = mysql_query($query) or die('error: ' . mysql_error());
 
 ?>
-								<table class="table table-striped" align="center">
+				<table class="table table-striped" align="center">
 
-									<thead>
-										<tr>
-											<th>Nombre</th>
-											<th>Descripcion</th>
-											<th>Precio</th>
-											<th>Porcion descuento</th>
-										</tr>
-									</thead>
-									<?php while ($row = mysql_fetch_array($result)){?>
-							<td>
-								<?php $row['nombre'] ?>
-							</td>
-							<td>
-								<?php $row['descripcion'] ?>
-							</td>
-							<td>
-								<?php $row['precio'] ?>
-							</td>
-							<td>
-								<?php $row['procion_descuento'] ?>
-							</td>
-							<?php} ?>
-						</table>
-						</td>
-			</table>
-		</BODY>
+					<thead>
+						<tr>
+							<th>Nombre</th>
+							<th>Descripcion</th>
+							<th>Precio</th>
+							<th>Porcion descuento</th>
+						</tr>
+					</thead>
+					<?php while ($row = mysql_fetch_array($result)){?>
+					<td>
+						<?php $row['nombre'] ?>
+					</td>
+					<td>
+						<?php $row['descripcion'] ?>
+					</td>
+					<td>
+						<?php $row['precio'] ?>
+					</td>
+					<td>
+						<?php $row['procion_descuento'] ?>
+					</td>
+					<?php} ?>
+				</table>
+				</td>
+				</table>
+			</p>
 
-	</html>
+		</article>
+		<aside>
+			<p>
+				<table align="center">
+					<tr>
+						<th>Filtros</th>
+					</tr>
+					<td>
+						<form action="/action_page.php">
+							<fieldset>
+								<legend>Momento del dia</legend>
+								<input type="checkbox" name="Desayuno" value="1">Desayuno<br>
+								<input type="checkbox" name="Almuerzo" value="2">Almuerzo<br>
+								<input type="checkbox" name="Cena" value="3">Cena<br>
+							</fieldset>
+							<fieldset>
+								<legend>Restriccion Alimenticia</legend>
+								<input type="checkbox" name="Vegano" value="1">Vegeno<br>
+								<input type="checkbox" name="Vegetariano" value="2">Vegetariano<br>
+							</fieldset>
+							<fieldset>
+								<legend>Tipo Comida</legend>
+								<select name="Tipo_comida">
+									<option value="1">Afgana</option>
+									<option value="2">Africana</option>
+									<option value="3">Albanesa</option>
+									<option value="4">Alemana</option>
+									<option value="5">Árabe</option>
+									<option value="6">Argentina</option>
+									<option value="7">Asiática</option>
+									<option value="8">Australiana</option>
+									<option value="9">Bar</option>
+									<option value="10">Bar de vinos</option>
+									<option value="11">Belga</option>
+									<option value="12">Brasilera</option>
+									<option value="13">Británica</option>
+									<option value="14">Café</option>
+									<option value="15">Cajún y criolla</option>
+									<option value="16">Camboyana</option>
+									<option value="17">Caribeña</option>
+									<option value="18">Centroamericana</option>
+									<option value="19">Cervecería</option>
+									<option value="20">Chilena</option>
+									<option value="21">China</option>
+									<option value="22">China: Fujian</option>
+									<option value="23">Churrasquería</option>
+									<option value="24">Colombiana</option>
+									<option value="25">Comida de calle</option>
+									<option value="26">Comida rápida</option>
+									<option value="27">Contemporánea</option>
+									<option value="28">Coreana</option>
+									<option value="29">Cubana</option>
+									<option value="30">De Europa Central</option>
+									<option value="31">De Europa del Este</option>
+									<option value="32">De la India</option>
+									<option value="33">Del Medio Oriente</option>
+									<option value="34">Del sudoeste de EE.UU</option>
+									<option value="35">Delicatessen</option>
+									<option value="36">Ecuatoriana</option>
+									<option value="37">Egipcia</option>
+									<option value="38">Escocesa</option>
+									<option value="39">Española</option>
+									<option value="40">Estadounidense</option>
+									<option value="41">Europea</option>
+									<option value="42">Francesa</option>
+									<option value="43">Fuente de soda</option>
+									<option value="44">Fusión</option>
+									<option value="45">Gastropub</option>
+									<option value="46">Griega</option>
+									<option value="47">Hawaiana</option>
+									<option value="48">Internacional</option>
+									<option value="49">Irlandesa</option>
+									<option value="50">Israelí</option>
+									<option value="51">Italiana</option>
+									<option value="52">Japonesa</option>
+									<option value="53">Latina</option>
+									<option value="54">Libanesa</option>
+									<option value="55">Mariscos</option>
+									<option value="56">Mediterránea</option>
+									<option value="57">Mexicana</option>
+									<option value="58">Nativo estadounidense</option>
+									<option value="59">Nepalí</option>
+									<option value="60">Pakistaní</option>
+									<option value="61">Parrilla</option>
+									<option value="62">Parrillada</option>
+									<option value="63">Peruana</option>
+									<option value="64">Pizzería</option>
+									<option value="65">Pub</option>
+									<option value="66">Rumana</option>
+									<option value="67">Saludable</option>
+									<option value="68">Salvadoreña</option>
+									<option value="69">Sopas</option>
+									<option value="70">Sudamericana</option>
+									<option value="71">Suiza</option>
+									<option value="72">Sushi</option>
+									<option value="73">Tailandesa</option>
+									<option value="74">Taiwanesa</option>
+									<option value="75">Turca</option>
+									<option value="76">Venezolana</option>
+									<option value="77">Vietnamita</option>
+								</select>
+							</fieldset>
+						</form>
+					</td>
+				</table>
+
+			</p>
+		</aside>
+	</section>
+	<footer>
+		<h3>Derechos Reservados Descuentos YA!</h3>
+		<nav>
+			<ul>
+				<li><a href="">Promociones</a>&nbsp;//</li>
+				<li><a href="">Descuentos</a>&nbsp;//</li>
+				<li><a href="">Resturantes</a>&nbsp;//</li>
+				<li><a href="">Sitios de comida</a>&nbsp;//</li>
+				<li><a href="">Un solo lugar</a></li>
+			</ul>
+		</nav>
+	</footer>
+</body>
+
+</html>
