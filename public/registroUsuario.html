@@ -3,30 +3,30 @@
 
 	<HEAD>
 		<TITLE> Descuentos YA! - Registro de Usuarios</TITLE>
+		<link rel=StyleSheet href="registrocss" type="text/css" />
 	</HEAD>
+
 
 	<BODY>
 		<TABLE align="center" bgcolor="white">
 			<TR>
 				<TD>
-					<form action="/signup" method="post">
-						<fieldset>
-							<legend>Registro de Usuarios:</legend><br>
-							Nombre Completo:<br>
-							<input type="text" name="nombre" value=""><br>
-							Celular:<br>
-							<input type="tel" name="celular" min="0000000000" max="9999999999" value=""><br>
-							E-mail:<br>
-							<input type="email" name="email" value=""><br>
-							Fecha de Nacimiento:<br>
-							<input type="date" name="fecha_nacimiento" value=""><br>
-							Genero:<br>
-							<input type="radio" name="Genero_M" value="M" checked> Masculino<br>
-							<input type="radio" name="Genero_F" value="F"> Femenino<br>
-							Clave:<br>
-							<input type="text" name="clave" value=""><br><br>
-							<input type="submit" value="Registrarse">
-						</fieldset>
+					<form class="login" action="/signup" method="post">
+						<h1 class="login-title">Registro de Usuarios</h1>
+						<p class="login-lost">Nombre Completo</p>
+						<input type="text" class="login-input" placeholder="Nombre Completo" name="nombre" value="" autofocus><br>
+						<p class="login-lost">Celular</p>
+						<input type="tel" class="login-input" placeholder="Celular" name="celular" value=""><br>
+						<p class="login-lost">E-mail</p>
+						<input type="email" class="login-input" placeholder="Email" name="email" value=""><br>
+						<p class="login-lost">Fecha de Nacimiento</p>
+						<input type="date" class="login-input" placeholder="Fecha" name="fecha_nacimiento" value=""><br>
+						<p class="login-lost">Genero</p>
+						<input type="radio" class="login-radio" name="Genero" value="Genero_M" name="Masculino" checked>Masculino<br>
+						<input type="radio" class="login-radio" name="Genero" value="Genero_F">Femenino<br>
+						<p class="login-lost">Clave</p>
+						<input class="login-input" type="password" placeholder="Clave" name="clave" value=""><br><br>
+						<input type="submit" value="Registrarse" class="login-button">
 					</form>
 				</TD>
 			</TR>

@@ -1,0 +1,139 @@
+<!DOCTIPE html>
+<html>
+	<HEAD>
+		<link rel=StyleSheet href="Administrar Promociones.css" type="text/css"/>
+		<TITLE> Descuentos YA! - Administrar Promociones</TITLE>
+	<HEAD>
+<BODY>
+	<TABLE align= "center" bgcolor="white">
+	<TR>
+	<TD>
+		<form class="login"action="/signup.php">
+			<h1 class="login-title">Administrar Promociones</h1>
+			<p class="login-lost">Punto de Atencion</p>
+			<select class="login-input" name="Punto_atencion">
+
+				</select>	
+			<p class="login-lost">Momento del dia</p>
+			<select class="login-input" name="Momento_dia">
+					<option value="1">Desayuno</option>
+					<option value="2">Almuerzo</option>
+					<option value="3">Cena</option>
+			</select>
+			<p class="login-lost">Tipo Comida</p>
+			<select class="login-input" name="Tipo_comida">
+					<option value="1">Afgana</option>
+					<option value="2">Africana</option>
+					<option value="3">Albanesa</option>
+					<option value="4">Alemana</option>
+					<option value="5">Árabe</option>
+					<option value="6">Argentina</option>
+					<option value="7">Asiática</option>
+					<option value="8">Australiana</option>
+					<option value="9">Bar</option>
+					<option value="10">Bar de vinos</option>
+					<option value="11">Belga</option>
+					<option value="12">Brasilera</option>
+					<option value="13">Británica</option>
+					<option value="14">Café</option>
+					<option value="15">Cajún y criolla</option>
+					<option value="16">Camboyana</option>
+					<option value="17">Caribeña</option>
+					<option value="18">Centroamericana</option>
+					<option value="19">Cervecería</option>
+					<option value="20">Chilena</option>
+					<option value="21">China</option>
+					<option value="22">China: Fujian</option>
+					<option value="23">Churrasquería</option>
+					<option value="24">Colombiana</option>
+					<option value="25">Comida de calle</option>
+					<option value="26">Comida rápida</option>
+					<option value="27">Contemporánea</option>
+					<option value="28">Coreana</option>
+					<option value="29">Cubana</option>
+					<option value="30">De Europa Central</option>
+					<option value="31">De Europa del Este</option>
+					<option value="32">De la India</option>
+					<option value="33">Del Medio Oriente</option>
+					<option value="34">Del sudoeste de EE.UU</option>
+					<option value="35">Delicatessen</option>
+					<option value="36">Ecuatoriana</option>
+					<option value="37">Egipcia</option>
+					<option value="38">Escocesa</option>
+					<option value="39">Española</option>
+					<option value="40">Estadounidense</option>
+					<option value="41">Europea</option>
+					<option value="42">Francesa</option>
+					<option value="43">Fuente de soda</option>
+					<option value="44">Fusión</option>
+					<option value="45">Gastropub</option>
+					<option value="46">Griega</option>
+					<option value="47">Hawaiana</option>
+					<option value="48">Internacional</option>
+					<option value="49">Irlandesa</option>
+					<option value="50">Israelí</option>
+					<option value="51">Italiana</option>
+					<option value="52">Japonesa</option>
+					<option value="53">Latina</option>
+					<option value="54">Libanesa</option>
+					<option value="55">Mariscos</option>
+					<option value="56">Mediterránea</option>
+					<option value="57">Mexicana</option>
+					<option value="58">Nativo estadounidense</option>
+					<option value="59">Nepalí</option>
+					<option value="60">Pakistaní</option>
+					<option value="61">Parrilla</option>
+					<option value="62">Parrillada</option>
+					<option value="63">Peruana</option>
+					<option value="64">Pizzería</option>
+					<option value="65">Pub</option>
+					<option value="66">Rumana</option>
+					<option value="67">Saludable</option>
+					<option value="68">Salvadoreña</option>
+					<option value="69">Sopas</option>
+					<option value="70">Sudamericana</option>
+					<option value="71">Suiza</option>
+					<option value="72">Sushi</option>
+					<option value="73">Tailandesa</option>
+					<option value="74">Taiwanesa</option>
+					<option value="75">Turca</option>
+					<option value="76">Venezolana</option>
+					<option value="77">Vietnamita</option>
+				</select>
+			<p class="login-lost">Restriccion Alimenticia</p>
+			<select class="login-input" name="Restriccion_alimenticia">
+					<option value="1">Vegano</option>
+					<option value="2">Vegetariano</option>
+			</select>
+			<p class="login-lost">Tipo de Promocion</p>
+			<select class="login-input" name="Tipo_promocion">
+					<option value="1">Tiempo limitado</option>
+					<option value="2">Cantidad de usuarios</option>
+					<option value="2">Convencional</option>
+			</select>
+			<p class="login-lost">Nombre de la Promocion</p>
+			<input type="text" class="login-input" placeholder="Nombre" name="Nombre_Promocion" value="">
+			<p class="login-lost">Descripcion de la Promocion</p>
+			<input type="text" class="login-input" placeholder="Descripcion" name="Descripcion_Promocion" value="">
+			<p class="login-lost">Precio</p>
+			<input type="number" class="login-input" placeholder="Precio" name="Precio_Promocion" value="">
+			<p class="login-lost">Porcion de Descuento</p>
+			<input type="number" class="login-input" placeholder="Porcion descuento" name="Porcion_descuento" value="">
+			<p class="login-lost">Cantidad</p>
+			<input type="number" class="login-input" placeholder="Cantidad" name="Cantidad" value="">
+			<p class="login-lost">Fecha de creacion</p>
+			<input type="datetime-local" class="login-input" placeholder="Fecha Creacion" name="fecha_creacion" value="">
+			<p class="login-lost">Fecha de Inicio</p>
+			<input type="datetime-local" class="login-input" placeholder="Fecha Inicio" name="fecha_inicio" value="">
+			<p class="login-lost">Fecha Final</p>
+			<input type="datetime-local" class="login-input" placeholder="Fecha Final" name="fecha_final" value="">
+			<input type="submit" value="Buscar" class="login-button">
+			<input type="submit" value="Crear" class="login-button">
+			<input type="submit" value="Modificar" class="login-button">
+			<input type="submit" value="Eliminar" class="login-button">
+		</form>
+	</TD>
+	</TR>
+	</TABLE>
+</BODY>
+</html>

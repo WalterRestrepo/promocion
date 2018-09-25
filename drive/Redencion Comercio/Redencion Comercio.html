@@ -1,0 +1,42 @@
+<!DOCTIPE html>
+<html>
+	<HEAD>
+		<link rel=StyleSheet href="Redencion Comercio.css" type="text/css"/>
+		<TITLE> Descuentos YA! - Redencion Comercio </TITLE>
+	<HEAD>
+<BODY>
+	<TABLE align= "center" bgcolor="white">
+	<TR>
+	<TD>
+			<form class="login" action="/redencion comercio" method="host">
+						<h1 class="login-title">Redencion de Promociones</h1>
+						<input type="text" class="login-input" placeholder="Codigo Promocional" name="codigo_promocion" autofocus>
+						<input type="submit" value="Redimir" class="login-button">
+				  </form>
+	</TD>
+	</TR>
+	<TR>
+    <TD>
+			<table class="table table-striped" align="center">
+						
+					<thead>
+					<tr>
+						  <th class="login-input2">Nombre</th>
+						  <th class="login-input2">Descripcion</th>
+						<th class="login-input2">Precio</th>
+						<th class="login-input2">Porcion descuento</th>
+					</tr>
+					</thead>
+				
+			<?php while ($row = mysql_fetch_array($result)){?>
+				<td><?php $row['nombre'] ?></td>
+				<td><?php $row['descripcion'] ?></td>
+				<td><?php $row['precio'] ?></td>
+				<td><?php $row['procion_descuento'] ?></td>
+			<?php} ?>
+			</table>
+		</TD>
+	</TR>
+	</TABLE>
+</BODY>
+</html>

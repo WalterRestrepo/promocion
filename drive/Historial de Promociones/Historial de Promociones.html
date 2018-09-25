@@ -1,0 +1,44 @@
+<!DOCTIPE html>
+<html>
+	<HEAD>
+		<link rel=StyleSheet href="Historial de Promociones.css" type="text/css"/>
+		<TITLE> Descuentos YA! - Redencion Comercio </TITLE>
+	<HEAD>
+<BODY>
+<form class="login">
+	<h1 class="login-title">Historial de Promociones</h1>
+	<TABLE align= "center" bgcolor="white">
+	<TR>
+	<TD>
+		
+			<table class="table table-striped" align="center">
+						
+					<thead>
+					<tr>
+						  <th class="login-input2">Nombre</th>
+						  <th class="login-input2">Descripcion</th>
+						<th class="login-input2">Precio</th>
+						<th class="login-input2">Porcion descuento</th>
+						<th class="login-input2">Fecha</th>
+					</tr>
+					</thead>
+				
+			<?php while ($row = mysql_fetch_array($result)){?>
+				<td><?php $row['nombre'] ?></td>
+				<td><?php $row['descripcion'] ?></td>
+				<td><?php $row['precio'] ?></td>
+				<td><?php $row['procion_descuento'] ?></td>
+				<td><?php $row['fecha'] ?></td>
+			<?php} ?>
+			</table>
+	</TD>
+	</TR>
+	<TR>
+    <TD>
+			
+		</TD>
+	</TR>
+	</TABLE>
+</form>
+</BODY>
+</html>

@@ -23,7 +23,7 @@ const sequelize = new Sequelize(application.database, application.username, appl
 var con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "",
+    password: "6uHsCIhZlaxc",
     database: "db_descuentos"
 });
 //Configuramos la aplicacion
@@ -53,35 +53,26 @@ app.get('/', sessionChecker, (req, res) => {
     res.redirect('/login');
 });
 app.get('/iniciarsesioncss', (req, res) => {
-    res.sendFile(__dirname + '/public/iniciarsesion.css');
+    res.sendFile(__dirname + '/css/iniciarsesion.css');
 });
 app.get('/listapromocionescss', (req, res) => {
-    res.sendFile(__dirname + '/public/listapromociones.css');
+    res.sendFile(__dirname + '/css/listapromociones.css');
 });
-// app.get('/crearComercio', function (req, res) {
-//     res.sendFile(
-//         path.join(__dirname + '/public/crearComercio.html')
-//     );
-// });
-// app.route('/crearComercioPost')
-//     .get(sessionChecker, (req, res) => {
-//         res.sendFile(__dirname + '/public/login.html');
-//     })
-//     .post((req, res) => {
-//         var nitComercio = req.body.nitComercio,
-//             nombreComercio = req.body.nombreComercio,
-//             razonComercio = req.body.razonComercio;
-//         con.query("INSERT INTO comercio (id, nit, nombre, razon_social, estado) VALUES (?, ?, ?, ?, ?);",
-//             [null, nitComercio, nombreComercio, razonComercio, 1], function (err, result, fields) {
-//                 if (err) throw err;
-//                 if (result.affectedRows == 1) {
-//                     res.sendFile(__dirname + '/public/comercioCreado.html');
-//                 } else {
-//                     res.sendFile(__dirname + '/public/comercioNoCreado.html');
-//                 }
-//             });
-//     });
+app.get('/registrocss', (req, res) => {
+    res.sendFile(__dirname + '/css/registro.css');
+});
+app.get('/vistadetalladacss', (req, res) => {
+    res.sendFile(__dirname + '/css/vistadetallada.css');
+});
 app.get('/inicio', (req, res) => {
+    if (req.session.user && req.cookies.user_sid) {
+        res.sendFile(__dirname + '/public/listaPromociones.html');
+    } else {
+        res.redirect('/login');
+    }
+});
+app.get('/get/detallePromocion/:id', (req, res) => {
+    var usuario = req.params.usuario;
     if (req.session.user && req.cookies.user_sid) {
         res.sendFile(__dirname + '/public/listaPromociones.html');
     } else {
@@ -97,7 +88,7 @@ app.route('/login')
             password = req.body.password;
         console.debug(email);
         console.debug(password);
-        User.findOne({ where: { email: email } }).then(function(user) {
+        User.findOne({ where: { email: email } }).then(function (user) {
             if (!user) {
                 res.redirect('/login');
             } else if (!user.validPassword(password)) {
@@ -108,21 +99,131 @@ app.route('/login')
             }
         });
     });
+app.get('/promociones/get', function (req, res) {
+    var consulta = "SELECT pr.id_promocion, co.nombre as NombreComercio, pr.nombre as NombrePromocion, pr.precio, pr.porcion_descuento, pr.descripcion,";
+    consulta += " pa.direccion, pa.barrio, pa.telefono, pa.latitud, pa.longitud, mo.nombre as MomentoDia, ra.nombre as Restriccion,";
+    consulta += " tc.nombre as TipoComida, tp.nombre as TipoPromocion, pr.cantidad";
+    consulta += " FROM promocion pr";
+    consulta += " INNER JOIN puntos_atencion pa ON pr.id_punto_atencion = pa.id_puntos_atencion";
+    consulta += " INNER JOIN comercio co ON co.id_comercio = pa.id_comercio";
+    consulta += " INNER JOIN tipo_promocion tp ON tp.id_tipo_promocion = pr.id_tipo_promocion";
+    consulta += " LEFT JOIN momento_dia mo ON mo.id_momento_dia = pr.id_momento_dia";
+    consulta += " LEFT JOIN restriccion_alimenticia ra ON ra.id_restriccion_alimenticia = pr.id_restriccion_alimenticia";
+    consulta += " LEFT JOIN tipo_comida tc ON tc.id_tipo_comida = pr.id_tipo_comida";
+    consulta += " WHERE pr.id_tipo_promocion = 3 OR";
+    consulta += " (pr.cantidad > 0 and pr.id_tipo_promocion = 2) OR";
+    consulta += " (pr.id_tipo_promocion = 1 AND now() BETWEEN pr.inicio and pr.fin)";
+    con.query(consulta, function (err, result, fields) {
+        if (err) throw err;
+        res.json(result);
+    });
+});
 
-app.get('/promociones/:tipo', function(req, res) {
-    var tipo = req.params.tipo;
-    if (tipo == 1) {
-        con.query("SELECT * FROM promocion;", function(err, result, fields) {
-            if (err) throw err;
-            res.json(result);
-        });
-    } else if (tipo == 2) {
-        con.query("SELECT * FROM promocion WHERE id_tipo_promocion = ? OR (cantidad > ? and id_tipo_promocion = ?) OR (id_tipo_promocion = ? AND now() BETWEEN inicio and fin);", [3, 0, 2, 1], function(err, result, fields) {
-            if (err) throw err;
-            res.json(result);
-        });
-    }
+app.get('/promociones/momento/get', function (req, res) {
+    var consulta = "SELECT distinct mo.nombre as MomentoDia";
+    consulta += " FROM promocion pr";
+    consulta += " INNER JOIN puntos_atencion pa ON pr.id_punto_atencion = pa.id_puntos_atencion";
+    consulta += " INNER JOIN comercio co ON co.id_comercio = pa.id_comercio";
+    consulta += " INNER JOIN tipo_promocion tp ON tp.id_tipo_promocion = pr.id_tipo_promocion";
+    consulta += " LEFT JOIN momento_dia mo ON mo.id_momento_dia = pr.id_momento_dia";
+    consulta += " LEFT JOIN restriccion_alimenticia ra ON ra.id_restriccion_alimenticia = pr.id_restriccion_alimenticia";
+    consulta += " LEFT JOIN tipo_comida tc ON tc.id_tipo_comida = pr.id_tipo_comida";
+    consulta += " WHERE mo.nombre is not null and (pr.id_tipo_promocion = 3 OR";
+    consulta += " (pr.cantidad > 0 and pr.id_tipo_promocion = 2) OR";
+    consulta += " (pr.id_tipo_promocion = 1 AND now() BETWEEN pr.inicio and pr.fin))";
+    con.query(consulta, function (err, result, fields) {
+        if (err) throw err;
+        res.json(result);
+    });
+});
 
+app.get('/promociones/restriccion/get', function (req, res) {
+    var consulta = "SELECT distinct ra.nombre as Restriccion";
+    consulta += " FROM promocion pr";
+    consulta += " INNER JOIN puntos_atencion pa ON pr.id_punto_atencion = pa.id_puntos_atencion";
+    consulta += " INNER JOIN comercio co ON co.id_comercio = pa.id_comercio";
+    consulta += " INNER JOIN tipo_promocion tp ON tp.id_tipo_promocion = pr.id_tipo_promocion";
+    consulta += " LEFT JOIN momento_dia mo ON mo.id_momento_dia = pr.id_momento_dia";
+    consulta += " LEFT JOIN restriccion_alimenticia ra ON ra.id_restriccion_alimenticia = pr.id_restriccion_alimenticia";
+    consulta += " LEFT JOIN tipo_comida tc ON tc.id_tipo_comida = pr.id_tipo_comida";
+    consulta += " WHERE ra.nombre is not null and (pr.id_tipo_promocion = 3 OR";
+    consulta += " (pr.cantidad > 0 and pr.id_tipo_promocion = 2) OR";
+    consulta += " (pr.id_tipo_promocion = 1 AND now() BETWEEN pr.inicio and pr.fin))";
+    con.query(consulta, function (err, result, fields) {
+        if (err) throw err;
+        res.json(result);
+    });
+});
+
+app.get('/promociones/tipocomida/get', function (req, res) {
+    var consulta = "SELECT distinct tc.nombre as TipoComida";
+    consulta += " FROM promocion pr";
+    consulta += " INNER JOIN puntos_atencion pa ON pr.id_punto_atencion = pa.id_puntos_atencion";
+    consulta += " INNER JOIN comercio co ON co.id_comercio = pa.id_comercio";
+    consulta += " INNER JOIN tipo_promocion tp ON tp.id_tipo_promocion = pr.id_tipo_promocion";
+    consulta += " LEFT JOIN momento_dia mo ON mo.id_momento_dia = pr.id_momento_dia";
+    consulta += " LEFT JOIN restriccion_alimenticia ra ON ra.id_restriccion_alimenticia = pr.id_restriccion_alimenticia";
+    consulta += " LEFT JOIN tipo_comida tc ON tc.id_tipo_comida = pr.id_tipo_comida";
+    consulta += " WHERE tc.nombre is not null and (pr.id_tipo_promocion = 3 OR";
+    consulta += " (pr.cantidad > 0 and pr.id_tipo_promocion = 2) OR";
+    consulta += " (pr.id_tipo_promocion = 1 AND now() BETWEEN pr.inicio and pr.fin))";
+    con.query(consulta, function (err, result, fields) {
+        if (err) throw err;
+        res.json(result);
+    });
+});
+
+app.get('/promociones/get/:id', function (req, res) {
+    var id = req.params.id;
+    var consulta = "SELECT pr.id_promocion, co.nombre as NombreComercio, pr.nombre as NombrePromocion, pr.precio, pr.porcion_descuento, pr.descripcion,";
+    consulta += " pa.direccion, pa.barrio, pa.telefono, pa.latitud, pa.longitud, mo.nombre as MomentoDia, ra.nombre as Restriccion,";
+    consulta += " tc.nombre as TipoComida, tp.nombre as TipoPromocion, pr.cantidad, ip.imagen";
+    consulta += " FROM promocion pr";
+    consulta += " INNER JOIN puntos_atencion pa ON pr.id_punto_atencion = pa.id_puntos_atencion";
+    consulta += " INNER JOIN comercio co ON co.id_comercio = pa.id_comercio";
+    consulta += " INNER JOIN tipo_promocion tp ON tp.id_tipo_promocion = pr.id_tipo_promocion";
+    consulta += " LEFT JOIN momento_dia mo ON mo.id_momento_dia = pr.id_momento_dia";
+    consulta += " LEFT JOIN restriccion_alimenticia ra ON ra.id_restriccion_alimenticia = pr.id_restriccion_alimenticia";
+    consulta += " LEFT JOIN tipo_comida tc ON tc.id_tipo_comida = pr.id_tipo_comida";
+    consulta += " LEFT JOIN imagen_promocion ip ON ip.id_promocion = pr.id_promocion";
+    consulta += " WHERE (pr.id_tipo_promocion = 3 OR";
+    consulta += " (pr.cantidad > 0 and pr.id_tipo_promocion = 2) OR";
+    consulta += " (pr.id_tipo_promocion = 1 AND now() BETWEEN pr.inicio and pr.fin))";
+    consulta += " AND pr.id_promocion = ?";
+    con.query(consulta, [id], function (err, result, fields) {
+        if (err) throw err;
+        res.json(result);
+    });
+});
+
+app.route('/redencion/save')
+    .get(sessionChecker, (req, res) => {
+        res.sendFile(__dirname + '/public/login.html');
+    })
+    .post((req, res) => {
+        var idUsuario = req.session.user.id;
+        var promocion = req.body.id_promocion
+        var codigo = req.body.codigo;
+        con.query("INSERT INTO redencion (id_redencion, id_usuario, id_promocion, estado, codigo, fecha_hora) VALUES (?, ?, ?, 0, ?, CURRENT_TIMESTAMP);",
+            [null, idUsuario, promocion, codigo], function (err, result, fields) {
+                if (err) throw err;
+                if (result.affectedRows >= 1) {
+                    res.json({ insert: true });
+                } else {
+                    res.json({ insert: false });
+                }
+            });
+
+    });
+
+app.get('/redencion/redeem/:codigo/:comercio', function (req, res) {
+    var promocion = req.params.promocion;
+    var codigo = req.params.codigo;
+    var idUsuario = req.session.user.id;
+});
+
+app.get('/id_usuario/get', function (req, res) {
+    console.log(req.session.user.id);
 });
 
 // app.get('/logout', (req, res) => {
@@ -334,7 +435,7 @@ app.route('/signup')
 //     });
 // });
 
-app.listen(3500, function() {
+app.listen(3500, function () {
     console.log("Funciona 127.0.0.1:3500");
 });
 
@@ -346,3 +447,27 @@ app.get("/test", function (req, res){
     res.send("Test.");    
 });
 app.listen(3000, function (){console.log("Funciona");});*/
+
+// app.get('/crearComercio', function (req, res) {
+//     res.sendFile(
+//         path.join(__dirname + '/public/crearComercio.html')
+//     );
+// });
+// app.route('/crearComercioPost')
+//     .get(sessionChecker, (req, res) => {
+//         res.sendFile(__dirname + '/public/login.html');
+//     })
+//     .post((req, res) => {
+//         var nitComercio = req.body.nitComercio,
+//             nombreComercio = req.body.nombreComercio,
+//             razonComercio = req.body.razonComercio;
+//         con.query("INSERT INTO comercio (id, nit, nombre, razon_social, estado) VALUES (?, ?, ?, ?, ?);",
+//             [null, nitComercio, nombreComercio, razonComercio, 1], function (err, result, fields) {
+//                 if (err) throw err;
+//                 if (result.affectedRows == 1) {
+//                     res.sendFile(__dirname + '/public/comercioCreado.html');
+//                 } else {
+//                     res.sendFile(__dirname + '/public/comercioNoCreado.html');
+//                 }
+//             });
+//     });
